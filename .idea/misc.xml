@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/springboot-rabbitmq/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-mp-codegenerator/pom.xml" />
+        <option value="$PROJECT_DIR$/springboot-demo/pom.xml" />
+        <option value="$PROJECT_DIR$/springcloud-with-nacos/pom.xml" />
+        <option value="$PROJECT_DIR$/springboot-rabbitmq/simple-provider/pom.xml" />
+        <option value="$PROJECT_DIR$/springboot-rabbitmq/simple-consumer/pom.xml" />
+        <option value="$PROJECT_DIR$/springboot-with-jwt/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-with-springcache/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-with-websocket/pom.xml" />
+        <option value="$PROJECT_DIR$/springboot-scan-code-login/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8 (2)" project-jdk-type="JavaSDK" />
+</project>

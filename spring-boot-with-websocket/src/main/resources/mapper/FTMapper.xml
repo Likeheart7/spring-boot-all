@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chenx.mapper.FTMapper">
+
+    <resultMap id="ftNodeInfo" type="com.chenx.pojo.vo.FTNodeVO">
+        <result property="fnodeId" column="fnode_id"/>
+        <result property="transfer" column="transfer"/>
+        <result property="neg" column="neg"/>
+        <result property="projectId" column="project_id"/>
+        <association property="event">
+            <result property="eventId" column="event_id"/>
+            <result property="eventCode" column="event_code"/>
+            <result property="mean" column="mean"/>
+            <result property="eventType" column="event_type"/>
+            <result property="eventDesc" column="event_desc"/>
+            <result property="eventState" column="event_state"/>
+            <result property="projectId" column="project_id"/>
+        </association>
+    </resultMap>
+
+    <insert id="addFTNode">
+        insert into ftnode values(#{ftnode.ftId}, #{ftnode.fnodeId},#{ftnode.eventId},#{ftnode.transfer},#{ftnode.neg},#{ftnode.projectId},)
+    </insert>
+    <update id="updateNode">
+        update ftnode set
+        <if test="ftNode.eventId != null">
+            event_id = #{ftNode.eventId}
+        </if>
+        <if test="ftNode.transfer != null">
+            and transfer = #{ftNode.transfer}
+        </if>
+        <if test="ftNode.neg != null">
+            and neg = #{ftNode.neg}
+        </if>
+        where
+            fnode_id = #{ftNode.fnodeId}
+    </update>
+
+    <delete id="removeFtByFtId">
+        delete from ft where ft_id = #{ftId}
+    </delete>
+    <delete id="removeNodeByFtId">
+        delete from ftnode where ft_id = #{ftId}
+    </delete>
+    <select id="getNodeWithEventByFtId" resultMap="ftNodeInfo">
+        SELECT f.ft_id, f.fnode_id, f.transfer, f.neg, e.* FROM `ftnode` f
+        left join events e on e.event_id = f.event_id and f.project_id = e.project_id
+        where f.ft_id = #{ftId}
+
+    </select>
+</mapper>

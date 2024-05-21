@@ -1,0 +1,9 @@
+server:
+  port: 8001
+spring:
+  rabbitmq:
+    host: 192.168.194.162
+    port: 5672
+    username: calc_admin
+    password: calc_admin
+    virtual-host: /calcAdmin

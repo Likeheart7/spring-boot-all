@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/springboot-rabbitmq/calc-engine/calc-engine.iml" filepath="$PROJECT_DIR$/springboot-rabbitmq/calc-engine/calc-engine.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot-rabbitmq/rorm-common/rorm-common.iml" filepath="$PROJECT_DIR$/springboot-rabbitmq/rorm-common/rorm-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot-rabbitmq/rorm-rmp/rorm-rmp.iml" filepath="$PROJECT_DIR$/springboot-rabbitmq/rorm-rmp/rorm-rmp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot-rabbitmq/simple-consumer/simple-consumer.iml" filepath="$PROJECT_DIR$/springboot-rabbitmq/simple-consumer/simple-consumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot-rabbitmq/simple-provider/simple-provider.iml" filepath="$PROJECT_DIR$/springboot-rabbitmq/simple-provider/simple-provider.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-boot-with-websocket/spring-boot-with-websocket.iml" filepath="$PROJECT_DIR$/spring-boot-with-websocket/spring-boot-with-websocket.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-mp-codegenerator/spring-mp-codegenerator.iml" filepath="$PROJECT_DIR$/spring-mp-codegenerator/spring-mp-codegenerator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/spring-review.iml" filepath="$PROJECT_DIR$/.idea/spring-review.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot-demo/springboot-demo.iml" filepath="$PROJECT_DIR$/springboot-demo/springboot-demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot-rabbitmq/springboot-rabbitmq.iml" filepath="$PROJECT_DIR$/springboot-rabbitmq/springboot-rabbitmq.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot-with-jwt/springboot-with-jwt.iml" filepath="$PROJECT_DIR$/springboot-with-jwt/springboot-with-jwt.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springcloud-with-nacos/springcloud-with-nacos.iml" filepath="$PROJECT_DIR$/springcloud-with-nacos/springcloud-with-nacos.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:chens="http://www.chens.com/chenx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.chens.com/chenx
+       http://www.chens.com/chenx/chens-annotation.xsd
+">
+
+    <chens:demo-target/>
+
+    <bean class="com.chenx.dao.UserDao" id="userDao"/>
+
+    <!--name: 别名，根据,分割-->
+    <bean class="com.chenx.service.impl.UserServiceImpl" id="userService" name="aaa,bbb,ccc" init-method="init" destroy-method="destroy" lazy-init="true">
+        <!--根据name找对应得set方法，根据ref找到对应的实例-->
+        <property name="userDao" ref="userDao"/>
+    </bean>
+<!--    <bean class="com.chenx.service.impl.UserServiceImpl" id="userService" name="aaa,bbb,ccc" lazy-init="true">-->
+<!--    </bean>-->
+
+    <!--传参-->
+    <bean class="com.chenx.factories.UserServiceFactory" name="userServiceByFactory" factory-method="getUserService" id="userService1" lazy-init="true">
+        <constructor-arg name="arg" value="enter factory method....."/>
+    </bean>
+
+    <!--注入List-->
+    <bean class="com.chenx.dao.UserDao" id="userDao1">
+        <property name="str">
+            <list>
+                <value>chen</value>
+                <value>xing</value>
+            </list>
+        </property>
+    </bean>
+
+    <!--非自定义Bean(druidDataSource)-->
+    <bean class="com.alibaba.druid.pool.DruidDataSource" id="druidDataSource">
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="url" value="localhost:3306/test"/>
+        <property name="username" value="root"/>
+        <property name="password" value="root"/>
+    </bean>
+
+
+    <!--静态工厂注册connection-->
+    <!--要先配Driver-->
+    <!--Class.forName("com.mysql.cj.jdbc.Driver")-->
+    <bean class="java.lang.Class" id="clazz" factory-method="forName">
+        <constructor-arg name="className" value="com.mysql.cj.jdbc.Driver"/>
+    </bean>
+    <bean class="java.sql.DriverManager" factory-method="getConnection" id="connection" scope="prototype">
+        <constructor-arg name="url" value="jdbc:mysql://localhost:3306/lpsa"/>
+        <constructor-arg name="user" value="root"/>
+        <constructor-arg name="password" value="root"/>
+    </bean>
+
+
+    <!--实例方法注册date-->
+    <!--
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        Date date = format.parse("2022-11-23 10:29:11");
+    -->
+    <bean class="java.text.SimpleDateFormat" id="format">
+        <constructor-arg name="pattern" value="yyyy-MM-dd hh:mm:ss"/>
+    </bean>
+    <bean class="java.util.Date" id="date" factory-bean="format" factory-method="parse">
+        <constructor-arg name="source" value="2022-11-23 10:29:11"/>
+    </bean>
+
+    <!--
+        DateTimeFormatter.ofPattern("yyyy-MM-dd HH.mm.ss").format(LocalDateTime.now())
+    -->
+    <bean class="java.time.LocalDateTime" name="nowTime" factory-method="now"/>
+    <bean class="java.time.format.DateTimeFormatter" factory-method="ofPattern" id="formatter">
+        <constructor-arg name="pattern" value="yyyy-MM-dd HH:mm:ss"/>
+    </bean>
+    <bean class="java.time.format.DateTimeFormatter" factory-bean="formatter" factory-method="format" id="formattedTime">
+        <constructor-arg name="temporal" ref="nowTime"/>
+    </bean>
+
+    <!--beanFactoryPostProcessor-->
+<!--    <bean class="com.chenx.processor.MyBeanFactoryPostProcessor"/>-->
+
+    <!--BeanDefinitionRegisterPostProcessor-->
+    <bean class="com.chenx.processor.MyBeanDefinitionRegisterPostProcessor"/>
+    <!--通过反射将被注解修饰的类放入BeanDefinitionMap-->
+    <bean class="com.chenx.processor.RegisterByAnnoDemo"/>
+
+    <!--用于演示的BeanPostProcessor-->
+    <bean class="com.chenx.dao.DemoDao" init-method="init" id="demoDao"/>
+<!--    <bean class="com.chenx.processor.MyBeanPostProcessorExample"/>-->
+</beans>

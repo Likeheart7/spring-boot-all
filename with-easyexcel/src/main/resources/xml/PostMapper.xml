@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.easyexcel.mapper.PostMapper">
+    <insert id="save">
+        insert into post(`post_name`, `salary`, `level`) values
+        <foreach item="item" index="index" collection="list"
+                 open="" separator="," close="" >
+            (#{item.postName}, #{item.salary}, #{item.level})
+        </foreach>
+    </insert>
+    <select id="getAllPost" resultType="com.easyexcel.pojo.Post">
+        select * from post;
+    </select>
+</mapper>

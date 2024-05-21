@@ -1,0 +1,21 @@
+server:
+  port: 8002
+spring:
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://127.0.0.1:3306/rorm_rmp?useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=utf8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  rabbitmq:
+    host: 192.168.194.162
+    port: 5672
+    username: calc_admin
+    password: calc_admin
+    virtual-host: /calcAdmin
+    listener:
+      simple:
+        acknowledge-mode: auto # auto 自动（IllegalArgumentException、MessageConversionException、校验异常等会重试）  manual 手动 none 无
+        retry:
+          multiplier: 2
+          enabled: true
+          max-attempts: 3

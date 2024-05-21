@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="springcloud-with-nacos" />
+        <module name="rorm-common" />
+        <module name="spring-mp-codegenerator" />
+        <module name="springboot-demo" />
+        <module name="springboot-with-jwt" />
+        <module name="calc-engine" />
+        <module name="simple-provider" />
+        <module name="rorm-rmp" />
+        <module name="spring-boot-with-websocket" />
+        <module name="springboot-scan-code-login" />
+        <module name="simple-consumer" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="calc-engine" options="-parameters" />
+      <module name="rorm-common" options="-parameters" />
+      <module name="rorm-rmp" options="-parameters" />
+      <module name="simple-consumer" options="-parameters" />
+      <module name="simple-provider" options="-parameters" />
+      <module name="spring-boot-with-websocket" options="-parameters" />
+      <module name="springboot-demo" options="-parameters" />
+      <module name="springboot-rabbitmq" options="" />
+      <module name="springboot-scan-code-login" options="-parameters" />
+      <module name="springboot-with-jwt" options="-parameters" />
+      <module name="springcloud-with-nacos" options="-parameters" />
+    </option>
+  </component>
+</project>

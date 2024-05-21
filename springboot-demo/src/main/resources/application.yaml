@@ -1,0 +1,14 @@
+server:
+  port: 8088
+  tomcat:
+    max-threads: 2
+spring:
+  demo:
+    name: chenx
+    age: 23
+
+demo:
+  enable:
+    config: enabled
+
+debug: true
