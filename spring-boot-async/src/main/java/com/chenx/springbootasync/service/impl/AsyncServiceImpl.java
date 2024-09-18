@@ -12,6 +12,10 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class AsyncServiceImpl implements AsyncService {
     //    @Autowired
+    /*
+       注入自己时，因为三级缓存不能处理@Async的代理bean的循环依赖，所以一般需要配合@Lazy处理
+       对于Spring AOP的代理，因为AbstractAutoProxyCreator重写了getEarlyReference方法，所以三级缓存实际上处理了Spring AOP的代理bean循环依赖的问题。
+     */
 //    @Lazy
 //    private AsyncService asyncService;
     @Autowired
