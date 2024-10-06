@@ -1,0 +1,4 @@
+server:
+  port: 8000
+rocketmq:
+  name-server: 192.168.194.162:9876
