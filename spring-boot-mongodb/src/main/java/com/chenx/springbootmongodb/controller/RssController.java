@@ -65,8 +65,7 @@ public class RssController {
         outputFeed.setEntries(outputEntries);
         SyndFeedOutput syndFeedOutput = new SyndFeedOutput();
         try {
-            String feedXmlContext = syndFeedOutput.outputString(outputFeed);
-            return feedXmlContext;
+            return syndFeedOutput.outputString(outputFeed);
         } catch (FeedException e) {
             log.error("error occurs." ,e);
             return "ERROR";

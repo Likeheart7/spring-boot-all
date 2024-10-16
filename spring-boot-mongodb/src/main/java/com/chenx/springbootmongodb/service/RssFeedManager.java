@@ -3,7 +3,6 @@ package com.chenx.springbootmongodb.service;
 import com.chenx.springbootmongodb.config.FeedSourceConfig;
 import com.chenx.springbootmongodb.dao.RssFeedEntryRepository;
 import com.chenx.springbootmongodb.dao.RssFeedRepository;
-import com.chenx.springbootmongodb.dao.impl.RssFeedRepositoryImpl;
 import com.chenx.springbootmongodb.pojo.FeedSource;
 import com.chenx.springbootmongodb.pojo.NameValue;
 import com.chenx.springbootmongodb.pojo.RssFeed;
@@ -16,6 +15,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.mongodb.core.aggregation.AggregationResults;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -32,6 +32,7 @@ public class RssFeedManager {
 
     @Autowired
     private RssFeedEntryRepository rssFeedEntryRepository;
+    private Page<RssFeedEntry> byOrderByPublishedDateDesc;
 
     /**
      * 获取数据
@@ -85,5 +86,28 @@ public class RssFeedManager {
         Assert.isTrue(limit > 0, "limit must be larger than zero");
         Page<RssFeedEntry> feedEntries = rssFeedEntryRepository.findByOrderByPublishedDateDesc(PageRequest.of(0, limit));
         return feedEntries.getContent();
+    }
+
+
+    /**
+     * 获取Feed列表
+     */
+    public List<RssFeed> listFeeds() {
+        return rssFeedRepository.findAll();
+    }
+
+    /**
+     * 根据分页获得条目
+     */
+    public Page<RssFeedEntry> listPageEntries(String feedName, PageRequest pageRequest) {
+        Assert.notNull(pageRequest, "pageRequest required.");
+        Page<RssFeedEntry> feedEntries;
+        if (StringUtils.isEmpty(feedName)) {
+            feedEntries = rssFeedEntryRepository.findByOrderByPublishedDateDesc(pageRequest);
+        } else {
+            feedEntries = rssFeedEntryRepository.findByFeedNameOrderByPublishedDateDesc(feedName, pageRequest);
+        }
+        return feedEntries;
+
     }
 }
