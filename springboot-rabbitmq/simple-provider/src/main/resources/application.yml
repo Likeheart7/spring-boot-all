@@ -5,3 +5,8 @@ spring:
     port: 5672
     host: 192.168.194.162
     virtual-host: /demo
+    publisher-confirm-type: correlated  # 开启发送方确认机制
+    template:
+      mandatory: true  # 消息投递失败返回客户端
+    publisher-returns: true   # 开启消息返回
+    connection-timeout: 3000

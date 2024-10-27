@@ -8,3 +8,6 @@ spring:
     listener:
       simple:
         prefetch: 1 # 消费者每次获取一条消息，消费完才能获取第二条，不再是轮询
+        acknowledge-mode: manual  # 开启手动确认
+server:
+  port: 8001
