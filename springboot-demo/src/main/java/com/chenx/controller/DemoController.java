@@ -3,13 +3,12 @@ package com.chenx.controller;
 import com.chenx.pojo.Pet;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.logging.log4j.ThreadContext;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.xml.transform.Result;
-import java.util.UUID;
 import java.util.concurrent.Future;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -25,14 +24,20 @@ public class DemoController {
 
     @Autowired
     private ThreadPoolExecutor calcThreadPool;
+    @Autowired
+    private DemoController demoController;
+
     // 测试demo接口
     @SneakyThrows
     @GetMapping("/demo")
-    public String demo(){
+    public String demo() {
         Future<String> task1 = calcThreadPool.submit(() -> {
             for (int i = 0; i < 10; i++) {
                 try {
-                    TimeUnit.MILLISECONDS.sleep(300);} catch (InterruptedException e) {e.printStackTrace();}
+                    TimeUnit.MILLISECONDS.sleep(300);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 log.info(Thread.currentThread().getName() + ": 执行第 " + i + " 次计算");
             }
             return "result1";
@@ -48,7 +53,7 @@ public class DemoController {
 
     // 测试日志traceId
     @GetMapping("/testLog")
-    public String testLog(){
+    public String testLog() {
         log.info("info");
         log.warn("warn");
         log.error("error");
@@ -56,9 +61,10 @@ public class DemoController {
 //        ThreadContext.clearMap();
         return "success";
     }
+
     // 测试pet接口
     @PostMapping("/testTrace")
-    public Pet testTrace(@RequestBody Pet pet){
+    public Pet testTrace(@RequestBody Pet pet) {
         log.info("{}", pet);
         return pet;
     }

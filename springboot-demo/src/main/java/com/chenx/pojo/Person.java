@@ -1,9 +1,7 @@
 package com.chenx.pojo;
 
-import com.sun.tracing.dtrace.ArgsAttributes;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 
 /**
  * @author chenx
